@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+/* ========================================
+   Kieu's Salon — Quiet Luxury Theme (Tailwind v4 + custom)
+   Light/Dark with class strategy on <html>
+   Gold accent used ONLY for hairlines, hovers, labels, borders, focus
+======================================== */
+
+/* Enable dark: variants via class on html */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens via CSS variables for easy control + transitions */
+:root {
+  /* Colors */
+  --bg: #ffffff;
+  --text: #000000;
+  --text-muted: #4a4a4a;
+  --gold: #fcba03;
+
+  /* Borders / subtle */
+  --border: #e5e5e5;
+  --border-gold: #fcba03;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-alt: #f8f8f8;
+
+  /* Fonts - loaded via index.html Google Fonts */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Motion */
+  --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  --bg: #000000;
+  --text: #ffffff;
+  --text-muted: #a3a3a3;
+  --border: #333333;
+  --border-gold: #fcba03;
+  --surface: #000000;
+  --surface-alt: #111111;
+}
+
+/* Global base + smooth color transitions (premium glide on theme switch) */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color var(--transition), color var(--transition);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, .serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 2.25rem;
+  line-height: 1.1;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+
+/* Eyebrow / section labels — gold, uppercase, letter-spaced */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* Gold accent rules / hairlines — thin only */
+.gold-rule {
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+/* Container — centered, max-width premium feel */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Buttons — gold outline only, never fill large */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold);
+  color: var(--text);
+  background: transparent;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  background: var(--gold);
+  color: #000000;
+  border-color: var(--gold);
+}
+
+.btn-gold:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Nav link styles */
+.nav-link {
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--gold);
+}
+
+.nav-link.active {
+  color: var(--gold);
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
+
+.nav-link:hover:after,
+.nav-link.active:after {
+  width: 100%;
+}
+
+/* Sticky nav: transparent -> blur + hairline on scroll */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: background-color var(--transition), border-color var(--transition), backdrop-filter var(--transition);
+}
+
+.nav-transparent {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.nav-scrolled {
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Dark nav-scrolled subtle */
+.dark .nav-scrolled {
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border-bottom-color: #222;
+}
+
+/* Service cards */
+.service-card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  overflow: hidden;
+}
+
+/* Service cards — always show full info.
+   Hover provides the subtle lift + gold "glow" border + soft shadow (color glow animation kept). */
+.service-card:hover,
+.service-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border-color: var(--gold);
+}
+
+.dark .service-card:hover,
+.dark .service-card:focus-within {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+}
+
+/* Gallery images */
+.gallery-img {
+  transition: transform var(--transition), box-shadow var(--transition);
+  border-radius: 0.5rem;
+}
+
+.gallery-img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.15);
+}
+
+/* Form styles */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(252, 186, 3, 0.15);
+}
+
+.dark .form-input:focus {
+  box-shadow: 0 0 0 3px rgba(252, 186, 3, 0.25);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.375rem;
+  font-weight: 500;
+}
+
+select.form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3E%3Cpath stroke='%23fcba03' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* Success / error states for form */
+.form-message {
+  padding: 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.form-success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid #10b981;
+  color: #065f46;
+}
+
+.dark .form-success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #a7f3d0;
+}
+
+.form-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  color: #991b1b;
+}
+
+.dark .form-error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fecaca;
+}
+
+/* Footer */
+.footer-link {
+  transition: color var(--transition);
+}
+
+.footer-link:hover {
+  color: var(--gold);
+}
+
+/* Scroll reveal base (applied via JS classes) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms var(--transition), transform 600ms var(--transition);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger support via inline style or utility classes if needed */
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+.reveal-delay-4 { transition-delay: 320ms; }
+
+/* Mobile hamburger */
+.hamburger {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger span:nth-child(1) { top: 5px; }
+.hamburger span:nth-child(2) { top: 11px; }
+.hamburger span:nth-child(3) { top: 17px; }
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Responsive utilities already handled by Tailwind */
+
+/* Small polish: ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Hide scrollbars on the gallery strip for clean look (premium) */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
