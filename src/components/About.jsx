@@ -1,10 +1,8 @@
-
-
-// Owner / salon portrait from inventory (002.png)
-import aboutImage from '../assets/images/002.png';
+// Salon interior photo (009.png) — replacing previous portrait for a view of the space.
+import aboutImage from '../assets/images/009.png';
 /**
  * About — Brief, warm, premium introduction.
- * Photo of stylist included for human touch.
+ * Photo of the salon interior.
  * Copy is tasteful placeholder; marked editable.
  */
 const About = () => {
@@ -41,7 +39,7 @@ const About = () => {
             <div className="aspect-[4/3] overflow-hidden rounded-3xl shadow-sm">
               <img
                 src={aboutImage}
-                alt="Kieu's Salon — welcoming stylist and beautiful interior"
+                alt="Kieu's Salon interior with plants and styling stations"
                 className="w-full h-full object-cover"
               />
             </div>

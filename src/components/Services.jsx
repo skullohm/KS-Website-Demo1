@@ -1,8 +1,8 @@
 /**
- * Services — Clean card grid.
- * All 7 services use EXACT text from the brief.
- * Full description is always visible (no expand/reveal animation).
+ * Services — Clean card grid (5 services + 1 booking CTA).
+ * Full descriptions always visible (no expand/reveal animation).
  * Subtle lift + gold border + shadow ("color glow") preserved on hover.
+ * Layout: 3 across on desktop (2 rows), 2 across on tablet.
  */
 
 const services = [
@@ -22,16 +22,6 @@ const services = [
     detail: 'Deep conditioning, scalp treatments, and smoothing procedures such as Brazilian Blowouts or Japanese straightening.',
   },
   {
-    name: 'Extensions',
-    short: 'Tape-in, sew-in & fusion',
-    detail: 'Tape-in, sew-in, or fusion extension applications.',
-  },
-  {
-    name: 'Manicures & Pedicures',
-    short: 'Spa treatments & nail enhancements',
-    detail: 'Standard and spa treatments for hands and feet, including polish changes. Enhancements: gel, acrylic, or dip powder applications, plus custom nail art.',
-  },
-  {
     name: 'Skin & Spa Treatments',
     short: 'Facials, waxing, lashes & brows',
     detail: 'Facials tailored to concerns like anti-aging, acne, and hydration; waxing and threading for brows, lips, and body; brow laminations, lash extensions, and tinting.',
@@ -41,9 +31,48 @@ const services = [
     short: 'Event & bridal packages',
     detail: 'Professional everyday or event makeup. Bridal packages coordinate hair, makeup, and nails for the bridal party, often including on-location services and trial runs.',
   },
+  {
+    name: 'Book an Appointment',
+    short: 'Call or message us',
+    detail: 'Quick booking',
+    isCta: true,
+  },
 ];
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, onCtaClick }) => {
+  if (service.isCta) {
+    // Special CTA card for booking — same card frame + hover glow, different interior content
+    return (
+      <div className="service-card group rounded-xl p-7 flex flex-col">
+        <div>
+          <div className="font-medium text-xl tracking-[-0.3px] leading-tight">{service.name}</div>
+          <div className="mt-1.5 text-sm text-[var(--text-muted)]">{service.short}</div>
+        </div>
+
+        <div className="mt-4 pt-4 border-t border-[var(--border)]">
+          <a
+            href="tel:+17819860112"
+            className="block text-lg font-medium tracking-tight hover:text-[#fcba03] transition-colors"
+            aria-label="Call Kieu's Salon at (781) 986-0112"
+          >
+            (781) 986-0112
+          </a>
+          <button
+            type="button"
+            onClick={onCtaClick}
+            className="btn-gold mt-3 w-full text-xs py-2.5"
+          >
+            SEND A MESSAGE
+          </button>
+          <p className="mt-3 text-[12px] text-[var(--text-muted)]/80">
+            Walk-ins welcome when available.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Standard service card
   return (
     <div className="service-card group rounded-xl p-7 flex flex-col">
       <div>
@@ -60,6 +89,16 @@ const ServiceCard = ({ service }) => {
 };
 
 const Services = () => {
+  const scrollToContact = (e) => {
+    if (e) e.preventDefault();
+    const el = document.getElementById('contact');
+    if (el) {
+      const navHeight = 80;
+      const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="services" className="py-20 border-b border-[var(--border)]">
       <div className="container">
@@ -67,7 +106,7 @@ const Services = () => {
           <div className="eyebrow">Signature Services</div>
           <h2 className="serif mt-3">Timeless Craft, Modern Technique</h2>
           <p className="mt-4 text-[var(--text-muted)] max-w-prose">
-            Seven refined offerings delivered with precision and care.
+            Expert services with easy booking.
           </p>
         </div>
 
@@ -75,7 +114,7 @@ const Services = () => {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {services.map((service, index) => (
             <div key={index} className="reveal" style={{ transitionDelay: `${80 * (index % 3)}ms` }}>
-              <ServiceCard service={service} />
+              <ServiceCard service={service} onCtaClick={scrollToContact} />
             </div>
           ))}
         </div>
