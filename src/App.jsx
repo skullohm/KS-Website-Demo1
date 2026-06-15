@@ -11,20 +11,20 @@ import Contact from './components/Contact';
 /**
  * Kieu's Salon — Premium single-page React website (Quiet Luxury)
  *
- * IMAGES INVENTORY (gate 1 completed before any code):
+ * IMAGES INVENTORY (gate 1 completed before any code; 002.png later removed per request):
  * Folder: C:\Users\AK\Desktop\ks-website\images contained exactly:
  *   001.png — Salon interior (black chairs, yellow tones) → BEST HERO (wide atmospheric)
- *   002.png — Owner/stylist portrait (colorful dress) → About section owner photo
  *   003.png — Elegant updo with baby's breath → Gallery / Bridal styling
- *   004.png — Long straight black hair (back view) → Gallery / Extensions
+ *   004.png — Long straight black hair (back view) → Gallery
  *   005.png — Modern platinum pixie cut → Gallery / Cuts & Styling
  *   006.png — Silver/ash hair color (yellow top) → Gallery / Coloring
  *   007.png — Spiky textured cut → Gallery / Cuts & Styling
+ *   009.png — Salon interior with plants & stations → About section (replaced previous 002.png portrait)
  *
- * NO dedicated logo file existed (all 7 files are photographic salon/hair images).
+ * NO dedicated logo file existed (photographic salon/hair images only).
  * Decision: Use elegant text logo "KIEU'S SALON" (serif + gold accent) in nav + footer.
  * All images copied to src/assets/images/ and imported via Vite asset pipeline.
- * Gallery strip included (6 strong images beyond hero).
+ * Gallery strip included (5 strong images: 003–007; 002.png removed).
  *
  * Theme: darkMode via 'class' on <html>, persisted in localStorage, falls back to light.
  * Gold (#fcba03) used strictly as accent (never large fills).

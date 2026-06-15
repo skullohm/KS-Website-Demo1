@@ -1,9 +1,7 @@
-
-// Gallery images selected from inventory (all except 001.png which is the hero)
-// 002–007.png: strong, varied salon/hair photography — 6 quality images available.
+// Gallery images selected from inventory (all except 001.png which is the hero; 002.png removed per request).
+// 003–007.png: strong, varied salon/hair photography — 5 quality images available.
 // Decision: INCLUDE gallery strip (per brief: "if enough quality images... include").
 // Placed after Services for visual breathing room before About. Minimal, no captions.
-import img002 from '../assets/images/002.png';
 import img003 from '../assets/images/003.png';
 import img004 from '../assets/images/004.png';
 import img005 from '../assets/images/005.png';
@@ -11,7 +9,6 @@ import img006 from '../assets/images/006.png';
 import img007 from '../assets/images/007.png';
 
 const galleryImages = [
-  { src: img002, alt: 'Kieu\'s Salon stylist portrait' },
   { src: img003, alt: 'Elegant bridal updo hairstyle' },
   { src: img004, alt: 'Long sleek straight hair styling' },
   { src: img005, alt: 'Modern platinum blonde pixie cut' },
