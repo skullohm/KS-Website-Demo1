@@ -7,6 +7,8 @@ import Gallery from './components/Gallery';
 import About from './components/About';
 import Hours from './components/Hours';
 import Contact from './components/Contact';
+import { Analytics } from '@vercel/analytics/react';
+
 
 /**
  * Kieu's Salon — Premium single-page React website (Quiet Luxury)
