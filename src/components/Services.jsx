@@ -33,7 +33,7 @@ const services = [
   },
   {
     name: 'Book an Appointment',
-    short: 'Call or message us',
+    short: 'Call us to book',
     detail: 'Quick booking',
     isCta: true,
   },
@@ -62,7 +62,7 @@ const ServiceCard = ({ service, onCtaClick }) => {
             onClick={onCtaClick}
             className="btn-gold mt-3 w-full text-xs py-2.5"
           >
-            SEND A MESSAGE
+            CALL TO BOOK
           </button>
           <p className="mt-3 text-[12px] text-[var(--text-muted)]/80">
             Walk-ins welcome when available.
